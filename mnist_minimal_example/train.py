@@ -22,6 +22,7 @@ for epoch in range(N_epochs):
     for i, (x, l) in enumerate(data.train_loader):
         x, l = x.cuda(), l.cuda()
         z, log_j = cinn(x, l)
+        print(log_j)
 
         nll = torch.mean(z**2) / 2 - torch.mean(log_j) / model.ndim_total
         nll.backward()
